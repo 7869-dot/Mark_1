@@ -2,6 +2,7 @@ import React from 'react';
 import LiquidEther from './LiquidEther';
 import CardSwap, { Card } from './CardSwap';
 import GooeyNav from './GooeyNav';
+import Shuffle from './Shuffle';
 import { SquareActivity, SlidersHorizontal, Circle, Code, ChevronDown } from 'lucide-react';
 import './App.css';
 
@@ -9,15 +10,15 @@ function App() {
   const navItems = [
     { label: "Research", href: "#research" },
     { label: "Economic Futures", href: "#economic-futures" },
-    { label: <span style={{display: "flex", alignItems: "center", gap: "0.25rem"}}>Commitments <ChevronDown size={14} /></span>, href: "#commitments" },
-    { label: <span style={{display: "flex", alignItems: "center", gap: "0.25rem"}}>Learn <ChevronDown size={14} /></span>, href: "#learn" },
+    { label: <span style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>Commitments <ChevronDown size={14} /></span>, href: "#commitments" },
+    { label: <span style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>Learn <ChevronDown size={14} /></span>, href: "#learn" },
     { label: "News", href: "#news" },
   ];
 
   return (
     <div className="app-wrapper">
       <div className="background-layer" />
-      
+
       <div className="liquid-ether">
         <LiquidEther
           colors={['#5227FF', '#FF9FFC', '#B19EEF']}
@@ -47,13 +48,7 @@ function App() {
           <div className="nav-links" style={{ gap: 0, marginTop: '2px' }}>
             <GooeyNav
               items={navItems}
-              particleCount={20}
-              particleDistances={[40, 10]}
-              particleR={30}
               initialActiveIndex={0}
-              animationTime={600}
-              timeVariance={300}
-              colors={['linear-gradient(135deg, #a855f7, #6366f1)']}
             />
           </div>
           <div className="nav-actions">
@@ -70,11 +65,29 @@ function App() {
             <SquareActivity size={14} strokeWidth={2} className="badge-icon" />
             New Background
           </button>
-          
-          <h1 className="main-title">
-            The web, made fluid at<br />
-            your fingertips.
-          </h1>
+
+          <div className="main-title-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
+            <h1 className="main-title" style={{ marginBottom: 0 }}>
+              <Shuffle
+                text="Shadow"
+                shuffleDirection="right"
+                duration={0.35}
+                animationMode="evenodd"
+                shuffleTimes={1}
+                ease="power3.out"
+                stagger={0.03}
+                threshold={0.1}
+                triggerOnce={true}
+                triggerOnHover={true}
+                respectReducedMotion={true}
+                loop={false}
+                loopDelay={0}
+              />
+            </h1>
+            <p className="tagline" style={{ fontSize: '1.25rem', color: '#a0a0a0', fontWeight: 400, margin: 0 }}>
+              TODO
+            </p>
+          </div>
 
           <div className="hero-actions">
             <button className="btn-primary">Get Started</button>
@@ -90,7 +103,7 @@ function App() {
               </h2>
               <p className="cards-subtitle">Just look at it go!</p>
             </div>
-            
+
             <div className="cards-wrapper">
               <CardSwap cardDistance={30} verticalDistance={40} delay={4000} pauseOnHover={false}>
                 <Card>
