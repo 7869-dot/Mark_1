@@ -3,7 +3,9 @@ import LiquidEther from './LiquidEther';
 import CardSwap, { Card } from './CardSwap';
 import GooeyNav from './GooeyNav';
 import Shuffle from './Shuffle';
-import { SquareActivity, SlidersHorizontal, Circle, Code, ChevronDown } from 'lucide-react';
+import SpotlightCard from './SpotlightCard';
+import Footer from './Footer';
+import { SquareActivity, SlidersHorizontal, Circle, Code, ChevronDown, Sparkles, Activity, Shield, Zap, Target } from 'lucide-react';
 import './App.css';
 
 function App() {
@@ -43,7 +45,7 @@ function App() {
       <div className="ui-layer">
         <nav className="navbar">
           <div className="brand">
-            <span>REACT B\TS</span>
+            <span>SHADOW</span>
           </div>
           <div className="nav-links" style={{ gap: 0, marginTop: '2px' }}>
             <GooeyNav
@@ -53,7 +55,7 @@ function App() {
           </div>
           <div className="nav-actions">
             <button className="btn-try">
-              Try React Bits
+              Try Shadow
               <div className="btn-try-divider" />
               <ChevronDown size={16} />
             </button>
@@ -61,12 +63,7 @@ function App() {
         </nav>
 
         <main className="hero">
-          <button className="badge-btn">
-            <SquareActivity size={14} strokeWidth={2} className="badge-icon" />
-            New Background
-          </button>
-
-          <div className="main-title-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
+          <div className="main-title-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0', marginBottom: '3rem' }}>
             <h1 className="main-title" style={{ marginBottom: 0 }}>
               <Shuffle
                 text="Shadow"
@@ -84,9 +81,7 @@ function App() {
                 loopDelay={0}
               />
             </h1>
-            <p className="tagline" style={{ fontSize: '1.25rem', color: '#a0a0a0', fontWeight: 400, margin: 0 }}>
-              TODO
-            </p>
+            <p className="tagline">The self you buried is the one we built</p>
           </div>
 
           <div className="hero-actions">
@@ -134,6 +129,40 @@ function App() {
             </div>
           </div>
         </section>
+
+        <section className="section-spotlight">
+          <div className="spotlight-row-top">
+            <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.15)">
+              <Sparkles size={32} color="#ffffff" style={{ marginBottom: '1.5rem', opacity: 0.9 }} />
+              <h3 className="spotlight-title">Boost Your Experience</h3>
+              <p className="spotlight-text">Get exclusive benefits, features & 24/7 support as a permanent club member.</p>
+            </SpotlightCard>
+            <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.15)">
+              <Activity size={32} color="#ffffff" style={{ marginBottom: '1.5rem', opacity: 0.9 }} />
+              <h3 className="spotlight-title">Actionable Analytics</h3>
+              <p className="spotlight-text">Gain deep insights into your growth with real-time actionable data graphs.</p>
+            </SpotlightCard>
+            <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.15)">
+              <Shield size={32} color="#ffffff" style={{ marginBottom: '1.5rem', opacity: 0.9 }} />
+              <h3 className="spotlight-title">Ironclad Platform</h3>
+              <p className="spotlight-text">Your privacy protected through cutting-edge, bank-grade encryption layers.</p>
+            </SpotlightCard>
+          </div>
+          <div className="spotlight-row-bottom">
+            <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.15)">
+              <Zap size={32} color="#ffffff" style={{ marginBottom: '1.5rem', opacity: 0.9 }} />
+              <h3 className="spotlight-title">Lighting Precision</h3>
+              <p className="spotlight-text">Our optimized global edge network delivers sub-millisecond deployment.</p>
+            </SpotlightCard>
+            <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.15)">
+              <Target size={32} color="#ffffff" style={{ marginBottom: '1.5rem', opacity: 0.9 }} />
+              <h3 className="spotlight-title">Absolute Control</h3>
+              <p className="spotlight-text">Target everything flawlessly using an expansive suite of intelligent filters.</p>
+            </SpotlightCard>
+          </div>
+        </section>
+
+        <Footer />
       </div>
     </div>
   );

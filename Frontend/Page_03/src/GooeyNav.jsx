@@ -37,9 +37,13 @@ const GooeyNav = ({
 
     if (textRef.current) {
       textRef.current.classList.remove('active');
-
       void textRef.current.offsetWidth;
       textRef.current.classList.add('active');
+    }
+    if (filterRef.current) {
+      filterRef.current.classList.remove('active');
+      void filterRef.current.offsetWidth;
+      filterRef.current.classList.add('active');
     }
   };
 
@@ -59,6 +63,7 @@ const GooeyNav = ({
     if (activeLi) {
       updateEffectPosition(activeLi);
       textRef.current?.classList.add('active');
+      filterRef.current?.classList.add('active');
     }
 
     const resizeObserver = new ResizeObserver(() => {

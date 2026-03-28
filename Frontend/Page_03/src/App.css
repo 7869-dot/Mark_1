@@ -223,14 +223,25 @@
 }
 
 .main-title {
-  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  font-size: clamp(7rem, 14vw, 11rem);
   font-weight: 700;
   line-height: 1.1;
-  letter-spacing: -0.04em;
+  letter-spacing: 0.08em;
   margin: 0;
-  margin-bottom: 3rem;
   color: #ffffff;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.tagline {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 500;
+  color: #d1d1d1;
+  margin: 0;
+  margin-top: -1.5rem;
+  letter-spacing: 0.02em;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .hero-actions {
@@ -273,4 +284,66 @@
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* SPOTLIGHT CARDS SECTION */
+.section-spotlight {
+  width: 100%;
+  max-width: 1200px;
+  margin: 30rem auto 10rem auto;
+  padding: 0 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.spotlight-row-top {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+}
+
+.spotlight-row-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  width: calc(66.666% - 0.666rem);
+}
+
+@media (max-width: 900px) {
+  .spotlight-row-top, .spotlight-row-bottom {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.custom-spotlight-card {
+  flex: 1;
+  text-align: left;
+  background: rgba(15, 15, 20, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.spotlight-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: -0.01em;
+}
+
+.spotlight-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  color: #90909a;
+  margin: 0;
+  line-height: 1.6;
 }
