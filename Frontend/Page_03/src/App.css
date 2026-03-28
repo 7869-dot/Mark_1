@@ -1,14 +1,14 @@
 .app-wrapper {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #030014;
+  background-color: transparent;
 }
 
 .background-layer {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -20,7 +20,7 @@
 }
 
 .liquid-ether {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -90,7 +90,8 @@
 
 /* HERO SECTION */
 .hero {
-  flex: 1;
+  min-height: 80vh;
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,6 +99,66 @@
   text-align: center;
   padding-bottom: 5rem;
   pointer-events: auto;
+}
+
+/* SECTION TWO (Cards) */
+.section-cards {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5%;
+  pointer-events: auto;
+}
+
+.cards-content {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+}
+
+.cards-text {
+  flex: 1;
+  max-width: 500px;
+}
+
+.cards-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.highlight {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+.cards-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+/* Cards Wrapper */
+.cards-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  height: 600px;
 }
 
 .badge-btn {
