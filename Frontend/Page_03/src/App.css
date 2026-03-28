@@ -136,6 +136,26 @@
   pointer-events: auto;
 }
 
+/* SCROLL REVEAL SECTION */
+.section-scrolltext {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 5%;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+  color: #fff;
+  text-align: center;
+}
+
+.section-scrolltext .scroll-reveal {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 /* SECTION TWO (Cards) */
 .section-cards {
   position: relative;

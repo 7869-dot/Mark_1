@@ -5,6 +5,7 @@ import GooeyNav from './GooeyNav';
 import Shuffle from './Shuffle';
 import SpotlightCard from './SpotlightCard';
 import Footer from './Footer';
+import ScrollReveal from './ScrollReveal';
 import { SquareActivity, SlidersHorizontal, Circle, Code, ChevronDown, Sparkles, Activity, Shield, Zap, Target } from 'lucide-react';
 import './App.css';
 
@@ -89,6 +90,17 @@ function App() {
             <button className="btn-secondary">Learn More</button>
           </div>
         </main>
+
+        <section className="section-scrolltext">
+          <ScrollReveal
+            baseOpacity={0.1}
+            enableBlur={true}
+            baseRotation={0}
+            blurStrength={4}
+          >
+            We're building a second consciousness that lives inside a screen and is made entirely out of you. It is a living psychological portrait of you — assembled silently over time — that has developed its own voice ---&gt; That is your Inner voice. It knows you the way only you know you. It doesn't say "you're doing great." It says the thing underneath that — the thing you actually needed to hear that nobody in your life has the precision to say.
+          </ScrollReveal>
+        </section>
 
         <section className="section-cards">
           <div className="cards-content">
