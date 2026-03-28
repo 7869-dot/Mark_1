@@ -1,10 +1,19 @@
 import React from 'react';
 import LiquidEther from './LiquidEther';
 import CardSwap, { Card } from './CardSwap';
-import { Atom, SquareActivity, SlidersHorizontal, Circle, Code } from 'lucide-react';
+import GooeyNav from './GooeyNav';
+import { SquareActivity, SlidersHorizontal, Circle, Code, ChevronDown } from 'lucide-react';
 import './App.css';
 
 function App() {
+  const navItems = [
+    { label: "Research", href: "#research" },
+    { label: "Economic Futures", href: "#economic-futures" },
+    { label: <span style={{display: "flex", alignItems: "center", gap: "0.25rem"}}>Commitments <ChevronDown size={14} /></span>, href: "#commitments" },
+    { label: <span style={{display: "flex", alignItems: "center", gap: "0.25rem"}}>Learn <ChevronDown size={14} /></span>, href: "#learn" },
+    { label: "News", href: "#news" },
+  ];
+
   return (
     <div className="app-wrapper">
       <div className="background-layer" />
@@ -33,12 +42,26 @@ function App() {
       <div className="ui-layer">
         <nav className="navbar">
           <div className="brand">
-            <Atom className="brand-icon" size={22} />
-            <span>React Bits</span>
+            <span>REACT B\TS</span>
           </div>
-          <div className="nav-links">
-            <a href="#home">Home</a>
-            <a href="#docs">Docs</a>
+          <div className="nav-links" style={{ gap: 0, marginTop: '2px' }}>
+            <GooeyNav
+              items={navItems}
+              particleCount={20}
+              particleDistances={[40, 10]}
+              particleR={30}
+              initialActiveIndex={0}
+              animationTime={600}
+              timeVariance={300}
+              colors={['linear-gradient(135deg, #a855f7, #6366f1)']}
+            />
+          </div>
+          <div className="nav-actions">
+            <button className="btn-try">
+              Try React Bits
+              <div className="btn-try-divider" />
+              <ChevronDown size={16} />
+            </button>
           </div>
         </nav>
 
