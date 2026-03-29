@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Orb from './Orb';
-import { Plus, ChevronDown, AudioLines, Send } from 'lucide-react';
+import { Plus, ChevronDown, AudioLines, Send, LogOut } from 'lucide-react';
+import { auth } from './firebase';
+import { signOut } from 'firebase/auth';
 import './App.css';
 
 function App() {
@@ -35,8 +37,25 @@ function App() {
     }, 5000);
   };
 
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      window.location.href = 'http://localhost:5174/';
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
+
   return (
     <div className="app-container">
+      <button 
+        onClick={handleLogout}
+        className="icon-btn" 
+        style={{position: 'absolute', top: '24px', right: '24px', zIndex: 100, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)'}}
+        title="Log Out"
+      >
+        <LogOut size={20} />
+      </button>
       <div className="orb-section">
         {aiThought && (
           <div className="thought-cloud-container">
