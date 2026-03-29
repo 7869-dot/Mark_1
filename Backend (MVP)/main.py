@@ -9,13 +9,13 @@ app = FastAPI(title="Mark_1 Backend MVP")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 @app.post("/api/chat", response_model=ChatResponse)
-async def chat_endpoint(request: ChatRequest):
+def chat_endpoint(request: ChatRequest):
     """
     Endpoint that receives user chat message and returns the LLM reply.
     """
