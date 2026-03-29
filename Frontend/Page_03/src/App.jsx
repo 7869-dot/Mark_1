@@ -87,7 +87,7 @@ function App() {
           </div>
 
           <div className="hero-actions">
-            <button className="btn-primary">Get Started</button>
+            <button className="btn-primary" onClick={() => window.location.href = 'http://localhost:5174/'}>Get Started</button>
             <button className="btn-secondary">Learn More</button>
           </div>
         </main>
