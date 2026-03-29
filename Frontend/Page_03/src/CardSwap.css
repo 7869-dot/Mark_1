@@ -1,0 +1,77 @@
+.card-swap-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(5%, 20%);
+  transform-origin: bottom right;
+
+  perspective: 900px;
+  overflow: visible;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #000;
+  overflow: hidden;
+
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Base top bar styling for cards similar to the screenshot */
+.card-header {
+  height: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  gap: 8px;
+}
+
+.card-header svg {
+  width: 16px;
+  height: 16px;
+  color: #a0a0a0;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 40px);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Glowing number inside the card */
+.card-number {
+  font-size: 140px;
+  font-weight: 800;
+  color: transparent;
+  background: linear-gradient(135deg, #A7EF9E, #22c55e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(167, 239, 158, 0.6));
+}
+
+@media (max-width: 768px) {
+  .card-swap-container {
+    transform: scale(0.75) translate(25%, 25%);
+  }
+}
+
+@media (max-width: 480px) {
+  .card-swap-container {
+    transform: scale(0.55) translate(25%, 25%);
+  }
+}
