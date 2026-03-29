@@ -58,10 +58,10 @@
   font-size: 140px;
   font-weight: 800;
   color: transparent;
-  background: linear-gradient(135deg, #a855f7, #6366f1);
+  background: linear-gradient(135deg, #A7EF9E, #22c55e);
   -webkit-background-clip: text;
   background-clip: text;
-  filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.6));
+  filter: drop-shadow(0 0 20px rgba(167, 239, 158, 0.6));
 }
 
 @media (max-width: 768px) {

@@ -13,19 +13,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  pointer-events: auto; /* Allow interaction with WebGL */
-  /* A dark vignette overlay so text stands out better in the middle */
-  background: radial-gradient(circle at center, transparent 0%, rgba(3, 0, 20, 0.4) 100%);
-}
-
-.liquid-ether {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  mix-blend-mode: screen;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .ui-layer {
@@ -61,9 +50,10 @@
 .brand {
   display: flex;
   align-items: center;
+  font-family: 'Georgia', 'Playfair Display', serif;
   font-weight: 800;
-  font-size: 1.25rem;
-  letter-spacing: 0.05em;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
   color: #fff;
   cursor: pointer;
   margin-right: auto;
@@ -103,8 +93,8 @@
   gap: 0.75rem;
   padding: 0 1rem;
   height: 40px;
-  background: linear-gradient(135deg, #a855f7, #6366f1);
-  color: #fff;
+  background: linear-gradient(135deg, #A7EF9E, #22c55e);
+  color: #000;
   border: none;
   border-radius: 6px;
   font-size: 0.875rem;
@@ -149,6 +139,9 @@
   pointer-events: auto;
   color: #fff;
   text-align: center;
+  font-family: 'Georgia', 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1.3;
 }
 
 .section-scrolltext .scroll-reveal {
@@ -184,6 +177,7 @@
 }
 
 .cards-title {
+  font-family: 'Georgia', 'Playfair Display', serif;
   font-size: 3rem;
   font-weight: 700;
   line-height: 1.1;
@@ -243,6 +237,7 @@
 }
 
 .main-title {
+  font-family: 'Georgia', 'Playfair Display', serif;
   font-size: clamp(7rem, 14vw, 11rem);
   font-weight: 700;
   line-height: 1.1;
@@ -253,7 +248,7 @@
 }
 
 .tagline {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Georgia', 'Playfair Display', serif;
   font-size: clamp(1rem, 2vw, 1.5rem);
   font-weight: 500;
   color: #d1d1d1;
@@ -272,15 +267,15 @@
 
 .btn-primary {
   padding: 0.875rem 2rem;
-  background: linear-gradient(135deg, #a855f7, #6366f1);
-  color: #ffffff;
+  background: linear-gradient(135deg, #A7EF9E, #22c55e);
+  color: #000;
   border: none;
   border-radius: 9999px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
-  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+  box-shadow: 0 4px 20px rgba(167, 239, 158, 0.4);
 }
 
 .btn-primary:hover {
@@ -352,7 +347,7 @@
 }
 
 .spotlight-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Georgia', 'Playfair Display', serif;
   font-size: 1.375rem;
   font-weight: 600;
   color: #fff;
@@ -361,7 +356,7 @@
 }
 
 .spotlight-text {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Georgia', 'Playfair Display', serif;
   font-size: 0.9375rem;
   color: #90909a;
   margin: 0;

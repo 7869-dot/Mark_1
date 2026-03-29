@@ -81,7 +81,7 @@
   position: absolute;
   inset: 0;
   border-radius: 10px;
-  background: linear-gradient(135deg, #a855f7, #6366f1);
+  background: linear-gradient(135deg, #A7EF9E, #22c55e);
   opacity: 0;
   transform: scale(0);
   transition: all 0.3s ease;
@@ -130,7 +130,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #a855f7, #6366f1);
+  background: linear-gradient(135deg, #A7EF9E, #22c55e);
   transform: scale(0);
   opacity: 0;
   z-index: -1;

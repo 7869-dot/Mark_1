@@ -1,5 +1,5 @@
 import React from 'react';
-import LiquidEther from './LiquidEther';
+import FaultyTerminal from './FaultyTerminal';
 import CardSwap, { Card } from './CardSwap';
 import GooeyNav from './GooeyNav';
 import Shuffle from './Shuffle';
@@ -22,24 +22,25 @@ function App() {
     <div className="app-wrapper">
       <div className="background-layer" />
 
-      <div className="liquid-ether">
-        <LiquidEther
-          colors={['#5227FF', '#FF9FFC', '#B19EEF']}
-          mouseForce={20}
-          cursorSize={100}
-          isViscous
-          viscous={30}
-          iterationsViscous={32}
-          iterationsPoisson={32}
-          resolution={0.5}
-          isBounce={false}
-          dt={0.025}
-          autoDemo
-          autoSpeed={2.5}
-          autoIntensity={5.0}
-          takeoverDuration={0.25}
-          autoResumeDelay={3000}
-          autoRampDuration={0.6}
+      <div style={{ width: '100vw', height: '100vh', position: 'fixed', top: 0, left: 0, zIndex: 0 }}>
+        <FaultyTerminal
+          scale={1.5}
+          gridMul={[2, 1]}
+          digitSize={1.2}
+          timeScale={0.5}
+          pause={false}
+          scanlineIntensity={0.5}
+          glitchAmount={1}
+          flickerAmount={1}
+          noiseAmp={1}
+          chromaticAberration={0}
+          dither={0}
+          curvature={0.1}
+          tint="#A7EF9E"
+          mouseReact
+          mouseStrength={0.5}
+          pageLoadAnimation
+          brightness={0.6}
         />
       </div>
 
