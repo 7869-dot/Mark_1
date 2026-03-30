@@ -20,3 +20,17 @@ def generate_reply(message: str) -> str:
         return response.text
     except Exception as e:
         return f"Error generating response: {str(e)}"
+
+async def generate_style_summary(writing_samples: list[str]) -> str:
+    """
+    Analyzes writing samples to generate a summary of the user's style.
+    """
+    try:
+        model = genai.GenerativeModel("gemini-2.5-flash")
+        prompt = "Analyze these writing samples and summarize the writing style in a few sentences:\n\n"
+        for i, sample in enumerate(writing_samples):
+            prompt += f"Sample {i+1}: {sample}\n"
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"Error generating style summary: {str(e)}"
