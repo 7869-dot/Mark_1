@@ -19,8 +19,8 @@ const ScrollVideo = () => {
 
     for (let i = 1; i <= TOTAL_FRAMES; i++) {
       const img = new Image();
-      // frame_0001.webp syntax
-      img.src = `/frames/frame_${i.toString().padStart(4, "0")}.webp`;
+      // frame_0001.jpg syntax
+      img.src = `/frames/frame_${i.toString().padStart(4, "0")}.jpg`;
       img.onload = () => {
         loadedCount++;
         // Quick draw of frame 1 as soon as it's ready so canvas isn't blank
@@ -45,7 +45,7 @@ const ScrollVideo = () => {
     // Lerp logic to smooth out the scroll jitters
     scrollData.current.current += (scrollData.current.target - scrollData.current.current) * 0.1;
     
-    if (images.length === TOTAL_FRAMES && canvasRef.current) {
+    if (images.length > 0 && canvasRef.current) {
       const ctx = canvasRef.current.getContext("2d");
       if (ctx) {
         // Map 0 -> 1 progress to 0 -> TOTAL_FRAMES - 1
@@ -54,11 +54,16 @@ const ScrollVideo = () => {
           Math.max(0, Math.floor(scrollData.current.current * (TOTAL_FRAMES - 1)))
         );
         
-        ctx.canvas.width = window.innerWidth;
-        ctx.canvas.height = window.innerHeight;
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = "high";
-        ctx.drawImage(images[frameIndex], 0, 0, ctx.canvas.width, ctx.canvas.height);
+        const img = images[frameIndex];
+        
+        if (img && img.naturalWidth !== 0) {
+          // Keep the canvas internal resolution completely mathematically pure to the original 1080p video source.
+          if (canvasRef.current.width !== img.naturalWidth) {
+             canvasRef.current.width = img.naturalWidth;
+             canvasRef.current.height = img.naturalHeight;
+          }
+          ctx.drawImage(img, 0, 0);
+        }
       }
     }
 

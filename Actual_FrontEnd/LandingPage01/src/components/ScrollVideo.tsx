@@ -2,7 +2,7 @@ import { useEffect, useRef, useCallback } from "react";
 
 // Total number of extracted frames from the python script
 const frameCount = 576;
-const currentFrame = (index: number) => `/videos/frames/frame_${(index + 1).toString().padStart(4, "0")}.webp`;
+const currentFrame = (index: number) => `/videos/frames/frame_${(index + 1).toString().padStart(4, "0")}.jpg`;
 
 const ScrollVideo = () => {
   const containerRef = useRef<HTMLDivElement>(null);

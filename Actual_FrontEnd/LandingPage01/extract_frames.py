@@ -22,8 +22,8 @@ while cap.isOpened():
     if ret:
         frame_count += 1
         # Save frame as WebP with 80% quality for better web optimization
-        output_path = os.path.join(output_dir, f'frame_{frame_count:04d}.webp')
-        cv2.imwrite(output_path, frame, [cv2.IMWRITE_WEBP_QUALITY, 80])
+        output_path = os.path.join(output_dir, f'frame_{frame_count:04d}.jpg')
+        cv2.imwrite(output_path, frame, [cv2.IMWRITE_JPEG_QUALITY, 100])
         
         if frame_count % 100 == 0:
             print(f"Extracted {frame_count} frames...")
