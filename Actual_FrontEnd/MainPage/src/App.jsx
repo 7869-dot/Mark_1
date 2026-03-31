@@ -3,6 +3,8 @@ import './App.css';
 
 function App() {
   const [activeItem, setActiveItem] = useState('New chat');
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isRightPanelExpanded, setIsRightPanelExpanded] = useState(false);
   const textAreaRef = useRef(null);
 
   const handleInput = (e) => {
@@ -40,10 +42,18 @@ function App() {
   return (
     <div id="app-container">
       {/* Section 1: Left Panel */}
-      <aside id="sidebar">
+      <aside id="sidebar" className={isSidebarCollapsed ? 'collapsed' : ''}>
         <div className="sidebar-top">
-          <div className="logo" style={{ marginBottom: '24px', paddingLeft: '4px' }}>
-            <h2>Axotol</h2>
+          <div className="logo-container">
+            <h2 className="logo-text">Axotol</h2>
+            <button 
+              className="icon-button toggle-btn" 
+              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+              aria-label="Toggle sidebar"
+              title={isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+            </button>
           </div>
           
           <nav className="main-nav">
@@ -53,9 +63,10 @@ function App() {
                 key={item.id}
                 className={`nav-item ${activeItem === item.id ? 'active' : ''}`}
                 onClick={(e) => { e.preventDefault(); setActiveItem(item.id); }}
+                title={isSidebarCollapsed ? item.id : undefined}
               >
                 {item.icon}
-                {item.id}
+                <span className="nav-label">{item.id}</span>
               </a>
             ))}
           </nav>
@@ -139,16 +150,26 @@ function App() {
             </div>
           </section>
 
-          {/* SECTION 3: Bottom Middle Area */}
-          <section className="section-3">
-            {/* Blank for now */}
-          </section>
-
         </div>
 
         {/* SECTION 4: Right Sidebar */}
-        <aside className="section-4">
-          <header className="main-header" style={{ position: 'absolute', top: 0, right: 0, width: '100%' }}>
+        <aside className={`section-4 ${isRightPanelExpanded ? 'expanded' : ''}`}>
+          <header className="main-header" style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
+            <div className="header-left">
+              <button 
+                className="icon-button expand-toggle-btn"
+                onClick={() => setIsRightPanelExpanded(!isRightPanelExpanded)}
+                title={isRightPanelExpanded ? "Collapse right panel" : "Expand right panel"}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  {isRightPanelExpanded ? (
+                    <path d="M13 18l6-6-6-6 M19 12H5"></path>
+                  ) : (
+                    <path d="M11 6l-6 6 6 6 M5 12h14"></path>
+                  )}
+                </svg>
+              </button>
+            </div>
             <div className="header-right">
               <button className="icon-button ghost-icon" aria-label="Ghost">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>

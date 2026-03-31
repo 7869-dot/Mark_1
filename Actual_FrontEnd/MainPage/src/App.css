@@ -63,6 +63,7 @@ button {
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--border-color);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar-top {
@@ -85,15 +86,15 @@ button {
   background-color: var(--border-color);
 }
 
-.logo {
+.logo-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 4px 6px;
-  margin-bottom: 8px;
+  margin-bottom: 24px;
 }
 
-.logo h2 {
+.logo-text {
   font-family: var(--font-serif);
   font-size: 1.25rem;
   font-weight: 600;
@@ -256,6 +257,54 @@ button {
   margin-left: auto;
 }
 
+/* --- COLLAPSED SIDEBAR STATE --- */
+#sidebar.collapsed {
+  width: 72px;
+}
+
+#sidebar.collapsed .logo-text {
+  display: none;
+}
+
+#sidebar.collapsed .logo-container {
+  justify-content: center;
+}
+
+#sidebar.collapsed .toggle-btn {
+  margin: 0 auto;
+}
+
+#sidebar.collapsed .nav-item {
+  justify-content: center;
+  padding: 12px 0;
+  gap: 0;
+}
+
+#sidebar.collapsed .nav-item svg {
+  margin: 0;
+}
+
+#sidebar.collapsed .nav-label {
+  display: none;
+}
+
+#sidebar.collapsed .recents-section {
+  display: none;
+}
+
+#sidebar.collapsed .user-profile {
+  justify-content: center;
+  padding: 8px 0;
+}
+
+#sidebar.collapsed .user-info {
+  display: none;
+}
+
+#sidebar.collapsed .profile-options {
+  display: none;
+}
+
 /* -------------------------- */
 /* SECTIONS 2, 3, 4: MAIN AREA */
 /* -------------------------- */
@@ -271,26 +320,16 @@ button {
   flex-direction: column;
 }
 
-/* SECTION 2: Top Middle Area */
+/* SECTION 2: Main Middle Area */
 .section-2 {
-  flex: 7; /* Takes up 70% of the middle panel height */
-  background-color: #2F2F2F; /* Distinct medium gray */
+  flex: 1; /* Takes up full middle panel height */
+  background-color: transparent;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Align to the bottom of section 2 */
+  justify-content: flex-end; /* Align the chat box to the bottom */
   align-items: center;
   position: relative;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.4); /* Clear boundary */
-  padding-bottom: 32px; /* Add spacing from the bottom border */
-}
-
-/* SECTION 3: Bottom Middle Area */
-.section-3 {
-  flex: 3; /* Takes up 30% of the middle panel height */
-  background-color: #3C3C3C; /* Lighter gray to differentiate */
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  padding-bottom: 48px; /* Spacing from the bottom edge */
 }
 
 /* SECTION 4: Right Panel */
@@ -300,6 +339,12 @@ button {
   border-left: 2px solid rgba(0, 0, 0, 0.4);
   position: relative;
   flex-shrink: 0;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-4.expanded {
+  width: 50%;
+  max-width: 700px;
 }
 
 .main-header {
@@ -307,7 +352,7 @@ button {
   padding: 0 16px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 /* CHAT AREA (Now in Section 2) */
