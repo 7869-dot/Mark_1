@@ -257,17 +257,51 @@ button {
 }
 
 /* -------------------------- */
-/* SECTION 2 & 3: MAIN AREA   */
+/* SECTIONS 2, 3, 4: MAIN AREA */
 /* -------------------------- */
-#main-content {
+#main-wrapper {
+  flex: 1;
+  display: flex;
+  height: 100%;
+}
+
+.middle-panel {
   flex: 1;
   display: flex;
   flex-direction: column;
-  position: relative;
-  background-color: var(--bg-main);
 }
 
-/* SECTION 2: EMPTY HERO */
+/* SECTION 2: Top Middle Area */
+.section-2 {
+  flex: 7; /* Takes up 70% of the middle panel height */
+  background-color: #2F2F2F; /* Distinct medium gray */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align to the bottom of section 2 */
+  align-items: center;
+  position: relative;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4); /* Clear boundary */
+  padding-bottom: 32px; /* Add spacing from the bottom border */
+}
+
+/* SECTION 3: Bottom Middle Area */
+.section-3 {
+  flex: 3; /* Takes up 30% of the middle panel height */
+  background-color: #3C3C3C; /* Lighter gray to differentiate */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* SECTION 4: Right Panel */
+.section-4 {
+  width: 280px;
+  background-color: #222222; /* Darker gray for right sidebar */
+  border-left: 2px solid rgba(0, 0, 0, 0.4);
+  position: relative;
+  flex-shrink: 0;
+}
+
 .main-header {
   height: 56px;
   padding: 0 16px;
@@ -276,25 +310,21 @@ button {
   justify-content: flex-end;
 }
 
-.hero-space {
-  flex: 1;
-}
-
-/* SECTION 3: BOTTOM BAR */
+/* CHAT AREA (Now in Section 2) */
 .bottom-bar {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 24px 32px 24px;
+  padding: 0 24px;
 }
 
 .input-container-wrapper {
   width: 100%;
-  max-width: 900px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 /* QUICK ACTION CHIPS */
@@ -308,13 +338,13 @@ button {
 .chip {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
+  gap: 6px;
+  padding: 6px 12px;
   border-radius: 20px;
   border: 1px solid var(--border-color);
   background-color: var(--bg-main);
   color: var(--text-primary);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 500;
   transition: background-color 0.2s, transform 0.1s, border-color 0.2s;
 }
@@ -332,10 +362,10 @@ button {
 .chat-input-box {
   background-color: var(--input-bg);
   border-radius: 12px;
-  padding: 12px 14px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   border: 1px solid var(--input-border);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   transition: border-color 0.2s;
@@ -351,13 +381,13 @@ button {
   border: none;
   color: var(--text-primary);
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   resize: none;
   outline: none;
   padding: 4px;
-  min-height: 24px;
-  max-height: 200px;
-  line-height: 1.5;
+  min-height: 20px;
+  max-height: 180px;
+  line-height: 1.4;
 }
 
 .chat-input-box textarea::placeholder {
@@ -385,10 +415,10 @@ button {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-secondary);
   cursor: pointer;
-  padding: 6px 10px;
+  padding: 4px 8px;
   border-radius: 6px;
   transition: background-color 0.2s, color 0.2s;
 }
@@ -411,8 +441,8 @@ button {
   background-color: #EBEAE8;
   color: #242423;
   border-radius: 8px;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -426,6 +456,6 @@ button {
 
 .send-btn .bars {
   font-weight: 800;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   letter-spacing: 1px;
 }

@@ -93,57 +93,70 @@ function App() {
         </div>
       </aside>
 
-      {/* Section 2 & 3: Main Area */}
-      <main id="main-content">
-        <header className="main-header">
-          <div className="header-right">
-            <button className="icon-button ghost-icon" aria-label="Ghost">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
-            </button>
-          </div>
-        </header>
+      {/* Sections 2, 3, 4: Splitting the main area */}
+      <div id="main-wrapper">
+        <div className="middle-panel">
+          
+          {/* SECTION 2: Top Middle Area */}
+          <section className="section-2">
+            <div className="bottom-bar">
+              <div className="input-container-wrapper">
+                <div className="quick-actions">
+                  {chips.map((chip, idx) => (
+                    <button key={idx} className="chip" onClick={(e) => e.preventDefault()}>
+                      {chip.icon} {chip.label}
+                    </button>
+                  ))}
+                </div>
 
-        <div className="hero-space"></div>
-
-        <div className="bottom-bar">
-          <div className="input-container-wrapper">
-            <div className="quick-actions">
-              {chips.map((chip, idx) => (
-                <button key={idx} className="chip" onClick={(e) => e.preventDefault()}>
-                  {chip.icon} {chip.label}
-                </button>
-              ))}
-            </div>
-
-            <div className="chat-input-box">
-              <textarea 
-                ref={textAreaRef}
-                placeholder="How can I help you today?" 
-                rows="1" 
-                onInput={handleInput}
-              ></textarea>
-              
-              <div className="input-controls">
-                <button className="icon-button attach-btn" aria-label="Attachment">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
-                  </svg>
-                </button>
-                
-                <div className="right-controls">
-                  <div className="model-selector">
-                    <span>Sonnet 4.6</span> <span className="dim">Extended</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <div className="chat-input-box">
+                  <textarea 
+                    ref={textAreaRef}
+                    placeholder="How can I help you today?" 
+                    rows="1" 
+                    onInput={handleInput}
+                  ></textarea>
+                  
+                  <div className="input-controls">
+                    <button className="icon-button attach-btn" aria-label="Attachment">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+                      </svg>
+                    </button>
+                    
+                    <div className="right-controls">
+                      <div className="model-selector">
+                        <span>Sonnet 4.6</span> <span className="dim">Extended</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                      </div>
+                      <button className="send-btn" aria-label="Send">
+                        <div className="bars">||||</div>
+                      </button>
+                    </div>
                   </div>
-                  <button className="send-btn" aria-label="Send">
-                    <div className="bars">||||</div>
-                  </button>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
+
+          {/* SECTION 3: Bottom Middle Area */}
+          <section className="section-3">
+            {/* Blank for now */}
+          </section>
+
         </div>
-      </main>
+
+        {/* SECTION 4: Right Sidebar */}
+        <aside className="section-4">
+          <header className="main-header" style={{ position: 'absolute', top: 0, right: 0, width: '100%' }}>
+            <div className="header-right">
+              <button className="icon-button ghost-icon" aria-label="Ghost">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+              </button>
+            </div>
+          </header>
+        </aside>
+      </div>
     </div>
   );
 }
