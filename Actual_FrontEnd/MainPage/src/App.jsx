@@ -1,11 +1,67 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import './App.css';
+
+const clips = ["/videos/clip1.mp4", "/videos/clip2.mp4", "/videos/clip3.mp4", "/videos/clip4.mp4"];
 
 function App() {
   const [activeItem, setActiveItem] = useState('New chat');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isRightPanelExpanded, setIsRightPanelExpanded] = useState(false);
   const textAreaRef = useRef(null);
+
+  const currentRef = useRef(null);
+  const nextRef = useRef(null);
+  const indexRef = useRef(0);
+
+  const swapAndPlay = useCallback(() => {
+    indexRef.current = (indexRef.current + 1) % clips.length;
+
+    // Swap refs visually: hide current, show next
+    const current = currentRef.current;
+    const next = nextRef.current;
+    if (!current || !next) return;
+
+    next.style.zIndex = "2";
+    current.style.zIndex = "1";
+    next.play().catch(() => {});
+
+    // Once next is playing, reload current with the NEXT next clip
+    const futureIdx = (indexRef.current + 1) % clips.length;
+    current.src = clips[futureIdx];
+    current.load();
+
+    // Swap refs
+    const tmp = currentRef.current;
+    currentRef.current = nextRef.current;
+    nextRef.current = tmp;
+  }, []);
+
+  useEffect(() => {
+    const a = currentRef.current;
+    const b = nextRef.current;
+    if (!a || !b) return;
+
+    a.src = clips[0];
+    a.load();
+    a.style.zIndex = "2";
+    b.style.zIndex = "1";
+    a.play().catch(() => {});
+
+    // Preload second clip
+    b.src = clips[1];
+    b.load();
+
+    const onEndedA = () => swapAndPlay();
+    const onEndedB = () => swapAndPlay();
+
+    a.addEventListener("ended", onEndedA);
+    b.addEventListener("ended", onEndedB);
+
+    return () => {
+      a.removeEventListener("ended", onEndedA);
+      b.removeEventListener("ended", onEndedB);
+    };
+  }, [swapAndPlay]);
 
   const handleInput = (e) => {
     e.target.style.height = 'auto';
@@ -108,8 +164,26 @@ function App() {
       <div id="main-wrapper">
         <div className="middle-panel">
           
-          {/* SECTION 2: Top Middle Area */}
+          {/* SECTION 2: Main Middle Area */}
           <section className="section-2">
+            
+            {/* HERO BACKGROUND SCENE */}
+            <div className="hero-background-container">
+              <video 
+                ref={currentRef}
+                className="hero-video" 
+                muted 
+                playsInline
+              />
+              <video 
+                ref={nextRef}
+                className="hero-video" 
+                muted 
+                playsInline
+              />
+              <div className="video-fade-overlay" style={{ zIndex: 5 }}></div>
+            </div>
+
             <div className="bottom-bar">
               <div className="input-container-wrapper">
                 <div className="quick-actions">
