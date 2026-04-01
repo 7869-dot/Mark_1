@@ -23,7 +23,7 @@ function App() {
 
     next.style.zIndex = "2";
     current.style.zIndex = "1";
-    next.play().catch(() => {});
+    next.play().catch(() => { });
 
     // Once next is playing, reload current with the NEXT next clip
     const futureIdx = (indexRef.current + 1) % clips.length;
@@ -45,7 +45,7 @@ function App() {
     a.load();
     a.style.zIndex = "2";
     b.style.zIndex = "1";
-    a.play().catch(() => {});
+    a.play().catch(() => { });
 
     // Preload second clip
     b.src = clips[1];
@@ -102,8 +102,8 @@ function App() {
         <div className="sidebar-top">
           <div className="logo-container">
             <h2 className="logo-text">Axotol</h2>
-            <button 
-              className="icon-button toggle-btn" 
+            <button
+              className="icon-button toggle-btn"
               onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
               aria-label="Toggle sidebar"
               title={isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
@@ -111,11 +111,11 @@ function App() {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
             </button>
           </div>
-          
+
           <nav className="main-nav">
             {menuItems.map(item => (
-              <a 
-                href="#" 
+              <a
+                href="#"
                 key={item.id}
                 className={`nav-item ${activeItem === item.id ? 'active' : ''}`}
                 onClick={(e) => { e.preventDefault(); setActiveItem(item.id); }}
@@ -133,8 +133,8 @@ function App() {
             <h3 className="section-title">Recents</h3>
             <div className="recent-list">
               {recentItems.map((item, idx) => (
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   key={idx}
                   className={`recent-item ${activeItem === `recent-${idx}` ? 'active' : ''}`}
                   onClick={(e) => { e.preventDefault(); setActiveItem(`recent-${idx}`); }}
@@ -163,22 +163,22 @@ function App() {
       {/* Sections 2, 3, 4: Splitting the main area */}
       <div id="main-wrapper">
         <div className="middle-panel">
-          
+
           {/* SECTION 2: Main Middle Area */}
           <section className="section-2">
-            
+
             {/* HERO BACKGROUND SCENE */}
             <div className="hero-background-container">
-              <video 
+              <video
                 ref={currentRef}
-                className="hero-video" 
-                muted 
+                className="hero-video"
+                muted
                 playsInline
               />
-              <video 
+              <video
                 ref={nextRef}
-                className="hero-video" 
-                muted 
+                className="hero-video"
+                muted
                 playsInline
               />
               <div className="video-fade-overlay" style={{ zIndex: 5 }}></div>
@@ -186,39 +186,13 @@ function App() {
 
             <div className="bottom-bar">
               <div className="input-container-wrapper">
-                <div className="quick-actions">
-                  {chips.map((chip, idx) => (
-                    <button key={idx} className="chip" onClick={(e) => e.preventDefault()}>
-                      {chip.icon} {chip.label}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="chat-input-box">
-                  <textarea 
-                    ref={textAreaRef}
-                    placeholder="How can I help you today?" 
-                    rows="1" 
-                    onInput={handleInput}
-                  ></textarea>
-                  
-                  <div className="input-controls">
-                    <button className="icon-button attach-btn" aria-label="Attachment">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
-                      </svg>
-                    </button>
-                    
-                    <div className="right-controls">
-                      <div className="model-selector">
-                        <span>Sonnet 4.6</span> <span className="dim">Extended</span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                      </div>
-                      <button className="send-btn" aria-label="Send">
-                        <div className="bars">||||</div>
-                      </button>
-                    </div>
-                  </div>
+                {/* DISCORD INSPIRED CHAT INPUT */}
+                <div className="discord-input-box">
+                  <input
+                    type="text"
+                    className="discord-input"
+                    placeholder="How can I help you today?"
+                  />
                 </div>
               </div>
             </div>
@@ -230,7 +204,7 @@ function App() {
         <aside className={`section-4 ${isRightPanelExpanded ? 'expanded' : ''}`}>
           <header className="main-header" style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
             <div className="header-left">
-              <button 
+              <button
                 className="icon-button expand-toggle-btn"
                 onClick={() => setIsRightPanelExpanded(!isRightPanelExpanded)}
                 title={isRightPanelExpanded ? "Collapse right panel" : "Expand right panel"}
@@ -246,7 +220,7 @@ function App() {
             </div>
             <div className="header-right">
               <button className="icon-button ghost-icon" aria-label="Ghost">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
               </button>
             </div>
           </header>
