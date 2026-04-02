@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import './App.css';
+import SplitText from './SplitText';
 
 const clips = ["/videos/clip1.mp4", "/videos/clip2.mp4", "/videos/clip3.mp4", "/videos/clip4.mp4"];
 
@@ -7,7 +8,14 @@ function App() {
   const [activeItem, setActiveItem] = useState('New chat');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isRightPanelExpanded, setIsRightPanelExpanded] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [activeSubMenu, setActiveSubMenu] = useState(null);
+  const [selectedGender, setSelectedGender] = useState('');
+  const [selectedRelationship, setSelectedRelationship] = useState('');
+  const [inputText, setInputText] = useState('');
+  const [sentMessage, setSentMessage] = useState('');
   const textAreaRef = useRef(null);
+  const profileMenuRef = useRef(null);
 
   const currentRef = useRef(null);
   const nextRef = useRef(null);
@@ -62,6 +70,19 @@ function App() {
       b.removeEventListener("ended", onEndedB);
     };
   }, [swapAndPlay]);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target)) {
+        setIsProfileMenuOpen(false);
+        setActiveSubMenu(null);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleInput = (e) => {
     e.target.style.height = 'auto';
@@ -146,8 +167,86 @@ function App() {
           </div>
         </div>
 
-        <div className="sidebar-bottom">
-          <div className="user-profile">
+        <div className="sidebar-bottom" ref={profileMenuRef}>
+          {isProfileMenuOpen && (
+            <div className="profile-popup-menu">
+              <div className="profile-popup-email">pr1smvoid6@gmail.com</div>
+              <div className="profile-popup-section">
+                <button className="profile-popup-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                  <span>Settings</span>
+                </button>
+              </div>
+              <div className="profile-popup-divider"></div>
+              <div className="profile-popup-section">
+                <div style={{ position: 'relative' }}>
+                  <button className="profile-popup-item" onClick={(e) => { e.stopPropagation(); setActiveSubMenu(activeSubMenu === 'gender' ? null : 'gender'); }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <span>Gender</span>
+                    <span className="profile-popup-shortcut"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                  </button>
+                  {activeSubMenu === 'gender' && (
+                    <div className="profile-submenu">
+                      {['Male', 'Female', 'Others'].map(gender => (
+                        <button 
+                          key={gender} 
+                          className="profile-popup-item submenu-item"
+                          onClick={(e) => { e.stopPropagation(); setSelectedGender(selectedGender === gender ? '' : gender); }}
+                        >
+                          {selectedGender === gender ? (
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                          ) : (
+                            <div style={{ width: '16px', height: '16px' }}></div>
+                          )}
+                          <span>{gender}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div style={{ position: 'relative' }}>
+                  <button className="profile-popup-item" onClick={(e) => { e.stopPropagation(); setActiveSubMenu(activeSubMenu === 'relationship' ? null : 'relationship'); }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    <span>Relationship Status</span>
+                    <span className="profile-popup-shortcut"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                  </button>
+                  {activeSubMenu === 'relationship' && (
+                    <div className="profile-submenu">
+                      {['Dating', 'Single', 'Married'].map(status => (
+                        <button 
+                          key={status} 
+                          className="profile-popup-item submenu-item"
+                          onClick={(e) => { e.stopPropagation(); setSelectedRelationship(selectedRelationship === status ? '' : status); }}
+                        >
+                          {selectedRelationship === status ? (
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                          ) : (
+                            <div style={{ width: '16px', height: '16px' }}></div>
+                          )}
+                          <span>{status}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="profile-popup-divider"></div>
+              <div className="profile-popup-section">
+                <button className="profile-popup-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><polyline points="16 12 12 8 8 12"></polyline><line x1="12" y1="16" x2="12" y2="8"></line></svg>
+                  <span>Upgrade plan</span>
+                </button>
+              </div>
+              <div className="profile-popup-divider"></div>
+              <div className="profile-popup-section">
+                <button className="profile-popup-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                  <span>Log out</span>
+                </button>
+              </div>
+            </div>
+          )}
+          <div className="user-profile" onClick={() => { setIsProfileMenuOpen(!isProfileMenuOpen); setActiveSubMenu(null); }}>
             <div className="user-avatar">P</div>
             <div className="user-info">
               <div className="user-name">Pr1smVoid6</div>
@@ -186,12 +285,36 @@ function App() {
 
             <div className="bottom-bar">
               <div className="input-container-wrapper">
+                {sentMessage && (
+                  <div className="sent-message-display">
+                    <SplitText
+                      key={sentMessage}
+                      text={sentMessage}
+                      className="text-2xl font-semibold text-center"
+                      delay={35}
+                      duration={1.0}
+                      ease="power3.out"
+                      splitType="chars"
+                      from={{ opacity: 0, y: 40 }}
+                      to={{ opacity: 1, y: 0 }}
+                      textAlign="center"
+                    />
+                  </div>
+                )}
                 {/* DISCORD INSPIRED CHAT INPUT */}
                 <div className="discord-input-box">
                   <input
                     type="text"
                     className="discord-input"
                     placeholder="How can I help you today?"
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && inputText.trim()) {
+                        setSentMessage(inputText.trim());
+                        setInputText('');
+                      }
+                    }}
                   />
                 </div>
               </div>
