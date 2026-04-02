@@ -1,0 +1,4 @@
+/* Empty index css to prevent default vite styles affecting App.css */
+body {
+    margin: 0;
+}
